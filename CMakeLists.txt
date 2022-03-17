@@ -14,5 +14,12 @@ include_directories(include)
 
 set_target_properties(raytracer PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 
-target_link_libraries(raytracer ${CMAKE_CURRENT_SOURCE_DIR}/lib/libyaml-cpp.dll.a)
+if(WIN32)
+    target_link_libraries(raytracer ${CMAKE_CURRENT_SOURCE_DIR}/lib/libyaml-cpp.dll.a)
+endif()
+
+if(UNIX)
+    target_link_libraries(raytracer yaml-cpp)
+endif()
+
 
